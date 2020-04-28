@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: golang-docker-k8s
+  name: golang-docker-k8s
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: golang-docker-k8s
+  template:
+    metadata:
+      labels:
+        app: golang-docker-k8s
+    spec:
+      containers:
+        - image: ibraheamkh/golang-docker-k8s:latest
+          name: golang-app
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
